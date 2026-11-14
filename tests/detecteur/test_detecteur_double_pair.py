@@ -1,9 +1,9 @@
 from carte import Carte, ValeurCarte
 from combinaison.double_paire import DoublePaire
 from detecteur.double_paire_detecteur import DoublePairDetecteur
+from manipuler_cartes import ManipulerCartes
 
-#♣♥♦♠
-    
+#♣♥♦♠    
 def test_detecte_facilement_double_pairs_se_suivant():
     (DetectorDoublePairTest()
         .ajouter_carte("6♦")
@@ -14,7 +14,7 @@ def test_detecte_facilement_double_pairs_se_suivant():
         .ajouter_carte("8♠")
         .ajouter_carte("2♥")
         .detecte_double_paires()
-        .valide_double_paires("6", "Q", "8"))
+        .valide_double_paires("Q", "6", "8"))
 
 def test_ne_detecte_aucune_double_pairs():
     (DetectorDoublePairTest()
@@ -27,12 +27,25 @@ def test_ne_detecte_aucune_double_pairs():
         .ajouter_carte("2♥")
         .detecte_double_paires()
         .trouve_aucune_double_paires())
+    
+def test_detecte_double_pairs_bien_melanges():
+            (DetectorDoublePairTest()
+                .ajouter_carte("6♦")
+                .ajouter_carte("8♠")
+                .ajouter_carte("Q♦")
+                .ajouter_carte("6♥")
+                .ajouter_carte("Q♠")
+                .ajouter_carte("2♥")
+                .ajouter_carte("Q♥")
+                .detecte_double_paires()
+                .valide_double_paires("Q", "6", "8"))
 
 class DetectorDoublePairTest():
     def __init__(self):
         self.toutes_les_cartes = []
         self.double_paires_detecte = None
-        self.double_paire_detecteur = DoublePairDetecteur()
+        manipuler_cartes = ManipulerCartes()
+        self.double_paire_detecteur = DoublePairDetecteur(manipuler_cartes)
 
     def ajouter_carte(self, card_crypted):
         card = Carte.parse(card_crypted)

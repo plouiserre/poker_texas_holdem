@@ -5,36 +5,33 @@ from typing import Iterator
 
 
 class DoublePairDetecteur : 
-    def __init__(self):
-        pass
+    def __init__(self, manipulation_cartes):
+        self.manipulation_cartes = manipulation_cartes 
 
-    def trouve_double_paire(self, combination: Iterator[Carte]):
-        premiere_paire_detecte = False
-        premiere_paire_valeur = ValeurCarte.INDEFINI
-        deuxieme_paire_detecte = False
-        deuxieme_paire_valeur = ValeurCarte.INDEFINI
-        haute_carte = ValeurCarte.INDEFINI
-        carte_precedente = Carte(ValeurCarte.INDEFINI, CouleurCarte.INDEFINI)
-        for carte in combination : 
-            if carte_precedente == Carte(ValeurCarte.INDEFINI, CouleurCarte.INDEFINI) :
-                carte_precedente = carte
-                continue
+    def trouve_double_paire(self, combinaison: Iterator[Carte]):
+        cartes_regroupees_par_valeur = self.manipulation_cartes.compter_cartes(combinaison)
+        double_paires = False
+        valeur_premiere_pair = ValeurCarte.DEUX
+        valeur_seconde_pair = ValeurCarte.DEUX
+        haute_carte_hors_pair = ValeurCarte.DEUX
+        nombre_de_pairs = 0
+        for carte in cartes_regroupees_par_valeur : 
+            nombre_cartes = cartes_regroupees_par_valeur[carte]
+            if nombre_cartes >= 2 : 
+                nombre_de_pairs = nombre_de_pairs + 1 
+                if nombre_de_pairs == 1 :
+                    valeur_premiere_pair = carte
+                else : 
+                    double_paires = True
+                    if carte > valeur_premiere_pair : 
+                        valeur_seconde_pair = valeur_premiere_pair
+                        valeur_premiere_pair = carte
+                    else : 
+                        valeur_seconde_pair = carte
             else : 
-                if carte.valeur == carte_precedente.valeur :
-                    if premiere_paire_detecte == False :
-                        premiere_paire_detecte = True
-                        premiere_paire_valeur = carte.valeur
-                    else :
-                        deuxieme_paire_detecte = True
-                        deuxieme_paire_valeur = carte.valeur
-            carte_precedente = carte
-        if premiere_paire_detecte and deuxieme_paire_detecte : 
-            for carte in combination :
-                if carte.valeur != premiere_paire_valeur and carte.valeur != deuxieme_paire_valeur : 
-                    if haute_carte == ValeurCarte.INDEFINI : 
-                        haute_carte = carte.valeur
-                    elif haute_carte < carte.valeur : 
-                        haute_carte = carte.valeur
-            return DoublePaire(premiere_paire_valeur, deuxieme_paire_valeur, haute_carte) 
+                if carte > haute_carte_hors_pair : 
+                    haute_carte_hors_pair = carte
+        if double_paires : 
+            return DoublePaire(valeur_premiere_pair, valeur_seconde_pair, haute_carte_hors_pair)
         else : 
             return None
