@@ -5,7 +5,7 @@ from manipuler_cartes import ManipulerCartes
 
 #♣♥♦♠    
 def test_detecte_facilement_couleur_se_suivant():
-    (DetectorCouleurTest()
+    (DetecteurCouleurTest()
         .ajouter_carte("6♦")
         .ajouter_carte("8♥")
         .ajouter_carte("J♥")
@@ -18,7 +18,7 @@ def test_detecte_facilement_couleur_se_suivant():
 
 
 def test_ne_trouve_aucune_couleur():
-    (DetectorCouleurTest()
+    (DetecteurCouleurTest()
         .ajouter_carte("6♦")
         .ajouter_carte("8♠")
         .ajouter_carte("Q♦")
@@ -30,7 +30,7 @@ def test_ne_trouve_aucune_couleur():
         .trouve_aucune_couleur())
 
 def test_detecte_couleur_bien_melanges(): 
-    (DetectorCouleurTest()
+    (DetecteurCouleurTest()
         .ajouter_carte("8♥")
         .ajouter_carte("J♥")
         .ajouter_carte("6♥")
@@ -41,9 +41,7 @@ def test_detecte_couleur_bien_melanges():
         .detecte_couleur()
         .valide_couleur("♥", "Q"))
 
-
-
-class DetectorCouleurTest : 
+class DetecteurCouleurTest : 
     def __init__(self):
         self.toutes_les_cartes = []
         self.couleur_trouve = Couleur(CouleurCarte.INDEFINI, ValeurCarte.INDEFINI)
