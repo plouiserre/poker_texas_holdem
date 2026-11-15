@@ -1,4 +1,4 @@
-from carte import Carte, ValeurCarte
+from carte import Carte
 from combinaison.double_paire import DoublePaire
 from detecteur.double_paire_detecteur import DoublePairDetecteur
 from manipuler_cartes import ManipulerCartes
@@ -62,4 +62,4 @@ class DetectorDoublePairTest():
         assert(egal == True)
 
     def trouve_aucune_double_paires(self):
-        assert(self.double_paires_detecte == None)
+        assert(self.double_paires_detecte == None)    

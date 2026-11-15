@@ -8,6 +8,8 @@ class DoublePairDetecteur :
     def __init__(self, manipulation_cartes):
         self.manipulation_cartes = manipulation_cartes 
 
+
+    #TODO améliorer le code
     def trouve_double_paire(self, combinaison: Iterator[Carte]):
         cartes_regroupees_par_valeur = self.manipulation_cartes.compter_cartes(combinaison)
         double_paires = False
