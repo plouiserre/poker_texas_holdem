@@ -1,4 +1,4 @@
-from carte import Carte, CouleurCarte, ValeurCarte
+from carte import Carte, ValeurCarte
 from combinaison.double_paire import DoublePaire
 
 from typing import Iterator
