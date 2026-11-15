@@ -15,6 +15,18 @@ def test_detecte_facilement_full_se_suivant():
             .ajouter_carte("Q♠")
             .detecte_full()
             .valide_full("6", "Q"))
+    
+def test_detecte_full_avec_deux_valeurs_trois_exemplaires(): 
+    (DetecteurFullTest()
+            .ajouter_carte("6♦")
+            .ajouter_carte("Q♦")
+            .ajouter_carte("6♥")
+            .ajouter_carte("Q♥")
+            .ajouter_carte("2♥")
+            .ajouter_carte("6♠")
+            .ajouter_carte("Q♠")
+            .detecte_full()
+            .valide_full("6", "Q"))
 
 class DetecteurFullTest():
     def __init__(self):
