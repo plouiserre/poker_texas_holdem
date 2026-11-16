@@ -19,8 +19,8 @@ class QuinteFlushDetecteur():
     def detecte_quinte_flush(self, combinaison: Iterator[Carte]):
         meme_couleur = True
         self.suite = self.quinte_detecteur.detecte_suite(combinaison)
-        self.carte_mini = self.suite.valeur - 4
         if self.suite != None : 
+            self.carte_mini = self.suite.valeur - 4
             self.couleur_carte = self.__trouve_couleur_majoritaire(combinaison)
             toutes_cartes_dans_suite = self.__trouve_cartes_compatibles_avec_quinte_flush(combinaison)
             if toutes_cartes_dans_suite == None : 
