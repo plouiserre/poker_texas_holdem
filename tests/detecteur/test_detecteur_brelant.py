@@ -3,7 +3,7 @@ from combinaison.brelan import Brelan
 from detecteur.brelan_detecteur import BrelanDetecteur
 from manipuler_cartes import ManipulerCartes
 
-def test_detecte_brelant_reine():
+def test_detecte_brelan_reine():
      (DetecteurBrelanTest()
             .ajouter_carte("2♣")
             .ajouter_carte("Q♦")
