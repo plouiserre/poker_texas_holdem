@@ -1,4 +1,4 @@
-from carte import Carte, ValeurCarte
+from carte import Carte
 from combinaison.full import Full
 from detecteur.full_detecteur import DetecteurFull
 from manipuler_cartes import ManipulerCartes
