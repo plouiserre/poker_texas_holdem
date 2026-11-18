@@ -1,8 +1,10 @@
+from compare_meme_type_combinaison import CompareMemeTypeCombinaison
 from gagnant import GAGNANT
 
 class CompareCombinaisons():
     def __init__(self, combinaison_par_joueur):
         self.combinaison_par_joueur = combinaison_par_joueur
+        self.compare_meme_type_combinaison = CompareMemeTypeCombinaison()
 
     def trouver_meilleurs_joueurs_avec_meilleure_combinaison(self):
         meilleure_combinaison = self.__trouver_meilleure_combinaison_parmi_celles_joueurs()
@@ -31,7 +33,7 @@ class CompareCombinaisons():
             elif SECONDE_COMBINAISON.points < PREMIERE_COMBINAISON.points : 
                 return GAGNANT.PREMIERE_COMBINAISON
             else : 
-                return GAGNANT.EGALITE
+                return self.compare_meme_type_combinaison.compare_combinaisons(PREMIERE_COMBINAISON, SECONDE_COMBINAISON)
 
     def __trouver_joueurs_avec_meilleure_combinaison(self, meilleure_combinaison):
         meilleurs_joueurs = []

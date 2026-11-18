@@ -22,6 +22,15 @@ def test_compare_allan_turing_carte_haute_avec_margaret_hamilton_full():
         .comparer_combinaisons()
         .confirme_joueur_gagnant("Margaret Hamilton"))
 
+def test_compare_marie_curie_full_avec_margaret_hamilton_full():
+    (CompareDeuxJoueursCombinaisonsCartes()
+        .ajouter_joueurs("Margaret Hamilton")
+        .ajouter_joueurs("Marie Curie")
+        .ajouter_combinaison("Margaret Hamilton", Full(ValeurCarte.DAME, ValeurCarte.SIX))
+        .ajouter_combinaison("Marie Curie", Full(ValeurCarte.SIX, ValeurCarte.DAME))
+        .comparer_combinaisons()
+        .confirme_joueur_gagnant("Marie Curie"))
+
 class CompareDeuxJoueursCombinaisonsCartes():
     def __init__(self):
         self.joueurs_avec_combinaisons = {}
