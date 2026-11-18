@@ -13,17 +13,20 @@ class CompareCombinaisons():
 
 
     def __trouver_meilleure_combinaison_parmi_celles_joueurs(self):
-        meilleure_combinaison = None
+        meilleures_combinaisons = []
         for nom_joueur in self.combinaison_par_joueur : 
             combinaison = self.combinaison_par_joueur[nom_joueur]
-            if meilleure_combinaison == None : 
-                meilleure_combinaison = combinaison
+            if len(meilleures_combinaisons) == 0 : 
+                meilleures_combinaisons.append(combinaison)
                 continue
-            combinaisons_a_comparer = [combinaison, meilleure_combinaison]
+            combinaisons_a_comparer = [combinaison, meilleures_combinaisons[0]]
             winner = self.__determiner_gagnant(combinaisons_a_comparer)
             if winner == GAGNANT.PREMIERE_COMBINAISON :
-                meilleure_combinaison = combinaison
-        return meilleure_combinaison
+                meilleures_combinaisons = []
+                meilleures_combinaisons.append(combinaison)
+            elif winner == GAGNANT.EGALITE : 
+                meilleures_combinaisons.append(combinaison)
+        return meilleures_combinaisons
 
     def __determiner_gagnant(self, combinaisons): 
             PREMIERE_COMBINAISON = combinaisons[0]
@@ -35,10 +38,11 @@ class CompareCombinaisons():
             else : 
                 return self.compare_meme_type_combinaison.compare_combinaisons(PREMIERE_COMBINAISON, SECONDE_COMBINAISON)
 
-    def __trouver_joueurs_avec_meilleure_combinaison(self, meilleure_combinaison):
+    def __trouver_joueurs_avec_meilleure_combinaison(self, meilleures_combinaisons):
         meilleurs_joueurs = []
         for nom_joueur in self.combinaison_par_joueur : 
             combinaison = self.combinaison_par_joueur[nom_joueur] 
-            if meilleure_combinaison == combinaison : 
-                meilleurs_joueurs.append(nom_joueur)
+            for meilleure_combinaison in meilleures_combinaisons : 
+                if meilleure_combinaison == combinaison : 
+                    meilleurs_joueurs.append(nom_joueur)
         return meilleurs_joueurs
