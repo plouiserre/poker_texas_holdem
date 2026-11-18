@@ -30,13 +30,13 @@ class CompareCombinaisons():
 
     def __determiner_gagnant(self, combinaisons): 
             PREMIERE_COMBINAISON = combinaisons[0]
-            SECONDE_COMBINAISON = combinaisons[1]
-            if PREMIERE_COMBINAISON.points < SECONDE_COMBINAISON.points : 
-                return GAGNANT.SECONDE_COMBINAISON
-            elif SECONDE_COMBINAISON.points < PREMIERE_COMBINAISON.points : 
+            DEUXIEME_COMBINAISON = combinaisons[1]
+            if PREMIERE_COMBINAISON.points < DEUXIEME_COMBINAISON.points : 
+                return GAGNANT.DEUXIEME_COMBINAISON
+            elif DEUXIEME_COMBINAISON.points < PREMIERE_COMBINAISON.points : 
                 return GAGNANT.PREMIERE_COMBINAISON
             else : 
-                return self.compare_meme_type_combinaison.compare_combinaisons(PREMIERE_COMBINAISON, SECONDE_COMBINAISON)
+                return self.compare_meme_type_combinaison.compare_combinaisons(PREMIERE_COMBINAISON, DEUXIEME_COMBINAISON)
 
     def __trouver_joueurs_avec_meilleure_combinaison(self, meilleures_combinaisons):
         meilleurs_joueurs = []
