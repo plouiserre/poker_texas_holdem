@@ -5,7 +5,7 @@ from combinaison.full import Full
 from compare_combinaisons import CompareCombinaisons
 
 def test_compare_albert_einstein_brelan_avec_marie_curie_full():
-    (CompareDeuxJoueursCombinaisonsCartes()
+    (CompareJoueursCombinaisonsCartesTest()
         .ajouter_joueurs("Albert Einstein")
         .ajouter_joueurs("Marie Curie")
         .ajouter_combinaison("Albert Einstein", Brelan(ValeurCarte.DAME, ValeurCarte.HUIT))
@@ -14,7 +14,7 @@ def test_compare_albert_einstein_brelan_avec_marie_curie_full():
         .confirme_joueur_gagnant(["Marie Curie"]))
 
 def test_compare_allan_turing_carte_haute_avec_margaret_hamilton_full():
-    (CompareDeuxJoueursCombinaisonsCartes()
+    (CompareJoueursCombinaisonsCartesTest()
         .ajouter_joueurs("Allan Turing")
         .ajouter_joueurs("Margaret Hamilton")
         .ajouter_combinaison("Allan Turing", CarteHaute(ValeurCarte.ROI))
@@ -23,7 +23,7 @@ def test_compare_allan_turing_carte_haute_avec_margaret_hamilton_full():
         .confirme_joueur_gagnant(["Margaret Hamilton"]))
 
 def test_compare_marie_curie_full_avec_margaret_hamilton_full():
-    (CompareDeuxJoueursCombinaisonsCartes()
+    (CompareJoueursCombinaisonsCartesTest()
         .ajouter_joueurs("Margaret Hamilton")
         .ajouter_joueurs("Marie Curie")
         .ajouter_combinaison("Margaret Hamilton", Full(ValeurCarte.DAME, ValeurCarte.SIX))
@@ -32,7 +32,7 @@ def test_compare_marie_curie_full_avec_margaret_hamilton_full():
         .confirme_joueur_gagnant(["Marie Curie"]))
 
 def test_compare_marie_curie_full_avec_margaret_hamilton_full():
-    (CompareDeuxJoueursCombinaisonsCartes()
+    (CompareJoueursCombinaisonsCartesTest()
         .ajouter_joueurs("Margaret Hamilton")
         .ajouter_joueurs("Marie Curie")
         .ajouter_combinaison("Marie Curie", Full(ValeurCarte.SIX, ValeurCarte.DAME))
@@ -40,7 +40,33 @@ def test_compare_marie_curie_full_avec_margaret_hamilton_full():
         .comparer_combinaisons()
         .confirme_joueur_gagnant(["Marie Curie", "Margaret Hamilton"]))
 
-class CompareDeuxJoueursCombinaisonsCartes():
+def test_compare_tous_les_joueurs_marie_curie_gagne():
+    (CompareJoueursCombinaisonsCartesTest()
+            .ajouter_joueurs("Albert Einstein")
+            .ajouter_joueurs("Marie Curie")
+            .ajouter_joueurs("Allan Turing")
+            .ajouter_joueurs("Margaret Hamilton")
+            .ajouter_combinaison("Albert Einstein", Brelan(ValeurCarte.DAME, ValeurCarte.HUIT))
+            .ajouter_combinaison("Marie Curie", Full(ValeurCarte.SIX, ValeurCarte.DAME))
+            .ajouter_combinaison("Allan Turing", CarteHaute(ValeurCarte.ROI))
+            .ajouter_combinaison("Margaret Hamilton", Full(ValeurCarte.DAME, ValeurCarte.SIX))                    
+            .comparer_combinaisons()
+            .confirme_joueur_gagnant(["Marie Curie"]))
+
+def test_compare_tous_les_joueurs_marie_curie_et_margaret_hamilton_gagnent():
+    (CompareJoueursCombinaisonsCartesTest()
+            .ajouter_joueurs("Albert Einstein")
+            .ajouter_joueurs("Marie Curie")
+            .ajouter_joueurs("Allan Turing")
+            .ajouter_joueurs("Margaret Hamilton")
+            .ajouter_combinaison("Albert Einstein", Brelan(ValeurCarte.DAME, ValeurCarte.HUIT))
+            .ajouter_combinaison("Marie Curie", Full(ValeurCarte.SIX, ValeurCarte.DAME))
+            .ajouter_combinaison("Allan Turing", CarteHaute(ValeurCarte.ROI))
+            .ajouter_combinaison("Margaret Hamilton", Full(ValeurCarte.SIX, ValeurCarte.DAME))                     
+            .comparer_combinaisons()
+            .confirme_joueur_gagnant(["Marie Curie", "Margaret Hamilton"]))
+
+class CompareJoueursCombinaisonsCartesTest():
     def __init__(self):
         self.joueurs_avec_combinaisons = {}
         self.meilleurs_joueurs = []
